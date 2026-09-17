@@ -134,6 +134,7 @@ public class Player : MonoBehaviour
     int stars;
     int multiplier;
 
+    public static Player playerref;
     SphereCollider coll;
     Rigidbody rb;
     float input = 0f;
@@ -153,7 +154,7 @@ public class Player : MonoBehaviour
     [NonSerialized]
     public int latestindex;
     public GeneratedRoad latestroad;
-    GameObject latestdelivery;
+    public GameObject latestdelivery;
     Rigidbody latestdeliveryrb;
     Vector3 savedvelocity;
     float lastdeliverytime;
@@ -195,6 +196,7 @@ public class Player : MonoBehaviour
         liner.enabled = false;
         coll = GetComponent<SphereCollider>();
         rb = GetComponent<Rigidbody>();
+        playerref = this;
         mesh.transform.parent = parentobject.transform;
         rb.mass = weight;
         rb.mass = weight;

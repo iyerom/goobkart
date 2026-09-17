@@ -9,10 +9,15 @@ public class PoleBehaviour : MonoBehaviour
     public PoleBehaviour closestpole;
     public bool taken;
     public bool leftside;
+    public float angle;
+    public float visangle;
+    bool adjusted;
+    Player player;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = Player.playerref;
         closestpole = this;
         Collider[] possiblepoles = Physics.OverlapSphere(transform.position, 50, LayerMask.GetMask("Pole"));
         for (int i = 0; i < possiblepoles.Length; i++)
@@ -95,6 +100,33 @@ public class PoleBehaviour : MonoBehaviour
                     liner.SetPositions(Pos);
                 }
             }
+        }
+    }
+
+    private void Update()
+    {
+        
+        if (Player.deliverycam != 0 && player.deliveriesqueue[0].road != null)
+        {
+            if (!adjusted)
+            {
+                if ((player.latestdelivery.transform.position - transform.position).magnitude < 1) return; //THERE'S A RETURN HERE BE CAREFUL
+                angle = Vector2.Angle(new Vector2(player.transform.position.x - transform.position.x, player.transform.position.z - transform.position.z), new Vector2(player.currentdeliveryhouse.transform.position.x - transform.position.x, player.currentdeliveryhouse.transform.position.z - transform.position.z));
+                if (angle < 270 && angle > 90)
+                {
+                    col.enabled = false;
+                }
+                else
+                {
+                    col.enabled = true;
+                }
+                adjusted = true;
+            }
+        }
+        else
+        {
+            adjusted = false;
+            col.enabled = false;
         }
     }
 }
