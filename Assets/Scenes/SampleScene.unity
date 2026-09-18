@@ -14349,13 +14349,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3211218, y: -0.58920103, z: 0.27474895, w: 0.688648}
+  m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
   m_LocalPosition: {x: -48.053944, y: -36.870975, z: 70.2868}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1420267239}
-  m_LocalEulerAnglesHint: {x: 50, y: -81.1, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46193,6 +46193,7 @@ MonoBehaviour:
   shootspeed: 2.5
   shootstrengthchargeupspeed: 100
   deliverycamoffset: 1
+  directionallight: {fileID: 410087039}
   mesh: {fileID: 1232479765}
   cycle: {fileID: 919132148148667376}
   parentobject: {fileID: 447281256}
@@ -46313,6 +46314,7 @@ MonoBehaviour:
   difficulty: 1
   hitsfx: {fileID: 784190815}
   latestroad: {fileID: 0}
+  latestdelivery: {fileID: 0}
   currentdelivery: 0
   currentdeliveryhouse: {fileID: 0}
 --- !u!135 &1239439983

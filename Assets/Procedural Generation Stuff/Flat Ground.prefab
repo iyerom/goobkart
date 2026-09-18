@@ -1728,7 +1728,7 @@ MonoBehaviour:
   obj: {fileID: 0}
   unimportanthouse: 0
   terrain: 0
-  chanceofnonhouse: 0
+  chanceofnonhouse: 15
 --- !u!1 &2725446131954010052
 GameObject:
   m_ObjectHideFlags: 0
@@ -2214,7 +2214,7 @@ MonoBehaviour:
   obj: {fileID: 0}
   unimportanthouse: 0
   terrain: 0
-  chanceofnonhouse: 0
+  chanceofnonhouse: 15
 --- !u!1 &3476327234577613681
 GameObject:
   m_ObjectHideFlags: 0
@@ -5201,7 +5201,7 @@ MonoBehaviour:
   obj: {fileID: 0}
   unimportanthouse: 0
   terrain: 0
-  chanceofnonhouse: 0
+  chanceofnonhouse: 15
 --- !u!1 &9002282400773588922
 GameObject:
   m_ObjectHideFlags: 0

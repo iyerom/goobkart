@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 
 
     [Header("Everything else")]
+    public GameObject directionallight;
     public GameObject mesh;
     public GameObject cycle;
     public GameObject parentobject;
@@ -186,6 +187,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        directionallight.transform.rotation = Quaternion.Euler(50, UnityEngine.Random.Range(0,360),0);
         tutorial = false;
         stars = 5;
         multiplier = 1;
@@ -235,6 +237,7 @@ public class Player : MonoBehaviour
             rb.velocity = Vector3.zero;
             return;
         }
+        directionallight.transform.Rotate(new Vector3(0,0.002f * rb.velocity.magnitude,0));
         rb.AddForce(mesh.transform.forward * input, ForceMode.Force);
         wheel2.localRotation = Quaternion.Euler(0,0,wheel2.localRotation.eulerAngles.z - rb.velocity.magnitude);
         wheel1.localRotation = Quaternion.Euler(0,0,wheel1.localRotation.eulerAngles.z - rb.velocity.magnitude);
