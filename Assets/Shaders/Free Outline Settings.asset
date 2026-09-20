@@ -29,7 +29,7 @@ MonoBehaviour:
   m_Name: Outline
   m_EditorClassIdentifier: 
   material: {fileID: 0}
-  isActive: 1
+  isActive: 0
   RenderingLayer: 1
   layerMask:
     serializedVersion: 2
@@ -43,7 +43,7 @@ MonoBehaviour:
   blendMode: 0
   extrusionMethod: 2
   scaling: 0
-  width: 1.9999998
+  width: 1.9999996
   minWidth: 0
   scaleWithResolution: 0
   referenceResolution: 1

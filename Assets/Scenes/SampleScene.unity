@@ -13242,6 +13242,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 338592487}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2403faaf79cb18c4e9209e58e3b4f7f8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 338592491}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2403faaf79cb18c4e9209e58e3b4f7f8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 338592490}
   m_SourcePrefab: {fileID: 100100000, guid: 2403faaf79cb18c4e9209e58e3b4f7f8, type: 3}
 --- !u!4 &338592410 stripped
 Transform:
@@ -13484,6 +13492,28 @@ MonoBehaviour:
   - {fileID: 338592411}
   - {fileID: 338592412}
   - {fileID: 338592413}
+--- !u!114 &338592490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338592481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76872f6a8435dc4e97444c93c3bb1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storeInTexcoordChannel: 1
+  cospatialVertexDistance: 0.01
+--- !u!33 &338592491
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338592481}
+  m_Mesh: {fileID: 0}
 --- !u!1 &350110277
 GameObject:
   m_ObjectHideFlags: 0
@@ -60522,7 +60552,8 @@ GameObject:
   - component: {fileID: 249740701986541503}
   - component: {fileID: 434195680601515257}
   - component: {fileID: 5796029908031821768}
-  m_Layer: 0
+  - component: {fileID: 5796029908031821769}
+  m_Layer: 3
   m_Name: mesh_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60536,7 +60567,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5796029908031821767}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -60547,6 +60578,20 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &5796029908031821769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796029908031821767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76872f6a8435dc4e97444c93c3bb1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storeInTexcoordChannel: 1
+  cospatialVertexDistance: 0.01
 --- !u!1 &5805607403308817640
 GameObject:
   m_ObjectHideFlags: 0
