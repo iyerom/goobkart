@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
     public LayerMask groundLayer;
     public Transform wheel1;
     public Transform wheel2;
+    public Transform pedal1;
+    public Transform pedal2;
     public Transform frontthing;
     public Transform cyclemain;
     public Transform LLegHandlePos;
@@ -57,6 +59,12 @@ public class Player : MonoBehaviour
     public Transform RLegHintDriftPos;
     public Transform RightLegPos;
     public Transform RightHintPos;
+    public Transform LLegHandlePosOffset;
+    public Transform RLegHandlePosOffset;
+    public Transform LeftPedalPos;
+    public Transform RightPedalPos;
+    float pedalpower;
+    public float pedalspeed;
     public GameObject crosshair;
     public GameObject delivery;
     public ProceduralGeneration proceduralgen;
@@ -212,6 +220,7 @@ public class Player : MonoBehaviour
         queueddeliveries = 0;
         paused = false;
         gameover = false;
+        pedalpower = 0;
 
         canvastransogpositoin = everythinginsidecnavas.position;
         aspectratio = Screen.width / Screen.height;
@@ -237,14 +246,20 @@ public class Player : MonoBehaviour
             rb.velocity = Vector3.zero;
             return;
         }
-        directionallight.transform.Rotate(new Vector3(0,0.002f * rb.velocity.magnitude,0));
+        directionallight.transform.rotation = Quaternion.Euler(directionallight.transform.rotation.eulerAngles + (new Vector3(0,0.002f * rb.velocity.magnitude,0)));
         rb.AddForce(mesh.transform.forward * input, ForceMode.Force);
         wheel2.localRotation = Quaternion.Euler(0,0,wheel2.localRotation.eulerAngles.z - rb.velocity.magnitude);
         wheel1.localRotation = Quaternion.Euler(0,0,wheel1.localRotation.eulerAngles.z - rb.velocity.magnitude);
+        if (Input.GetButton("Fire1") && !drifting && isgrounded) pedalpower = Mathf.Lerp(pedalpower,1,0.1f);
+        else pedalpower = Mathf.Lerp(pedalpower,0,0.1f);
+        pedal1.localRotation = Quaternion.Euler(0, 0, pedal1.localRotation.eulerAngles.z - pedalpower * pedalspeed * rb.velocity.magnitude);
+        pedal2.localRotation = Quaternion.Euler(0, 0, pedal2.localRotation.eulerAngles.z - pedalpower * pedalspeed * rb.velocity.magnitude);
+        LLegHandlePosOffset.transform.position = LeftPedalPos.transform.position;
+        RLegHandlePosOffset.transform.position = RightPedalPos.transform.position;
         frontthing.transform.localRotation = Quaternion.Lerp(frontthing.transform.localRotation,Quaternion.Euler(0,rotinput*100,0),0.1f * 25 / 50);
         if (Vector3.Dot(rb.velocity,mesh.transform.forward) > 0.1f)
         {
-            cyclemain.localRotation = Quaternion.Euler(0.3f * ((Vector3.SignedAngle(mesh.transform.forward, rb.velocity, mesh.transform.up))), 270, 0);
+            cyclemain.localRotation = Quaternion.Euler((Mathf.Sin(Mathf.Deg2Rad* pedal1.transform.rotation.eulerAngles.z) * 3) + 0.3f * ((Vector3.SignedAngle(mesh.transform.forward, rb.velocity, mesh.transform.up))), 270, 0);
         }
         if ((Vector3.SignedAngle(mesh.transform.forward, rb.velocity, mesh.transform.up)) > 60 && isgrounded)
         {
@@ -254,14 +269,14 @@ public class Player : MonoBehaviour
             LeftHintPos.position = Vector3.Lerp(LeftHintPos.position, LLegHintDriftPos.position, 0.1f);
 
 
-            RightLegPos.position = Vector3.Lerp(RightLegPos.position, RLegHandlePos.position, 0.1f);
+            RightLegPos.position = Vector3.Lerp(RightLegPos.position, RLegHandlePos.position, 1f); //CHANGE
             RightLegPos.rotation = Quaternion.Lerp(RightLegPos.rotation, RLegHandlePos.rotation, 0.1f);
             RightHintPos.rotation = Quaternion.Lerp(RightHintPos.rotation, RLegHintHandlePos.rotation, 0.1f);
             RightHintPos.position = Vector3.Lerp(RightHintPos.position, RLegHintHandlePos.position, 0.1f);
         }
         else if (Vector3.SignedAngle(mesh.transform.forward, rb.velocity, mesh.transform.up) < -60 && isgrounded)
         {
-            LeftLegPos.position = Vector3.Lerp(LeftLegPos.position, LLegHandlePos.position, 0.1f);
+            LeftLegPos.position = Vector3.Lerp(LeftLegPos.position, LLegHandlePos.position, 1); //CHANGE
             LeftLegPos.rotation = Quaternion.Lerp(LeftLegPos.rotation, LLegHandlePos.rotation, 0.1f);
             LeftHintPos.rotation = Quaternion.Lerp(LeftHintPos.rotation, LLegHintHandlePos.rotation, 0.1f);
             LeftHintPos.position = Vector3.Lerp(LeftHintPos.position, LLegHintHandlePos.position, 0.1f);
@@ -274,13 +289,13 @@ public class Player : MonoBehaviour
         }
         else
         {
-            LeftLegPos.position = Vector3.Lerp(LeftLegPos.position, LLegHandlePos.position, 0.1f);
+            LeftLegPos.position = Vector3.Lerp(LeftLegPos.position, LLegHandlePos.position, 1);//CHANGE
             LeftLegPos.rotation = Quaternion.Lerp(LeftLegPos.rotation, LLegHandlePos.rotation, 0.1f);
             LeftHintPos.rotation = Quaternion.Lerp(LeftHintPos.rotation, LLegHintHandlePos.rotation, 0.1f);
             LeftHintPos.position = Vector3.Lerp(LeftHintPos.position, LLegHintHandlePos.position, 0.1f);
 
 
-            RightLegPos.position = Vector3.Lerp(RightLegPos.position, RLegHandlePos.position, 0.1f);
+            RightLegPos.position = Vector3.Lerp(RightLegPos.position, RLegHandlePos.position, 1);//CHANGE
             RightLegPos.rotation = Quaternion.Lerp(RightLegPos.rotation, RLegHandlePos.rotation, 0.1f);
             RightHintPos.rotation = Quaternion.Lerp(RightHintPos.rotation, RLegHintHandlePos.rotation, 0.1f);
             RightHintPos.position = Vector3.Lerp(RightHintPos.position, RLegHintHandlePos.position, 0.1f);
